@@ -1,6 +1,6 @@
 from socket import *
 import threading
-#change
+
 def send_message():
     while True:
         message = input()
