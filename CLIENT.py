@@ -3,8 +3,10 @@ import threading
 
 def send_message():
     while True:
-        message = input()
-        clientSocket.send(message.encode())
+        message = "" + input()
+        # make sure the message is not blank, or a single char.
+        if(len(message) > 1):
+            clientSocket.send(message.encode())
 
 def receive_message():
     while True:
@@ -16,6 +18,7 @@ serverName = "127.0.0.1"
 serverPort = 10553
 clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName, serverPort))
+print("Connection established")
 
 # Start two threads: one for sending messages and one for receiving messages
 t1 = threading.Thread(target=send_message)
